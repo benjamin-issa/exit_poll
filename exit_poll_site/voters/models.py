@@ -41,7 +41,7 @@ class Voter(models.Model):
     NOTHOME = 'NH'
     REQUESTCALLBACK = 'CB'
     OUTCOME_CHOICES = (
-        (LEFTVOICEMAIL, 'Left Voicemail'),
+        (TOOKSURVEY, 'Respondent took the Survey'),
         (NOTHOME, 'Not Home'),
         (REQUESTCALLBACK, 'Requested Call Back'),
         (LEFTVOICEMAIL, 'Left a Voicemail'),
@@ -114,4 +114,12 @@ class Voter(models.Model):
                 return True
             else:
                 return False
+        return False
+    def took_survey(self):
+        if self.call_one_outcome == TOOKSURVEY:
+            return True
+        if self.call_two_outcome == TOOKSURVEY:
+            return True
+        if self.call_three_outcome == TOOKSURVEY:
+            return True
         return False
