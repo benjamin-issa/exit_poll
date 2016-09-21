@@ -17,7 +17,7 @@ class Voter(models.Model):
     name = models.CharField(max_length=80)
     #ID number
     respondent_id = models.CharField(max_length=15, default = None, null=True)
-    #age
+    #age // do we need their age or is it just part of the file?
     respondent_age = models.IntegerField(default = 0)
     #Wave
     WAVEONE = 'W1'
@@ -53,6 +53,7 @@ class Voter(models.Model):
     #Phone Numbers
     phone_no_one = models.ForeignKey(Phone, related_name='phone number one+', blank=True, null=True)
     phone_no_two = models.ForeignKey(Phone, related_name='phone number two+', blank=True, null=True)
+    phone_no_three = models.ForeignKey(Phone, related_name='phone number three+', blank=True, null=True)
     #Call One Information
     call_one = models.BooleanField(default=False, blank=True)
     call_one_time = models.DateTimeField('time of first call', blank=True, null=True)
