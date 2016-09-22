@@ -17,8 +17,10 @@ class Voter(models.Model):
     name = models.CharField(max_length=80)
     #ID number
     respondent_id = models.CharField(max_length=15, default = None, null=True)
-    #age // do we need their age or is it just part of the file?
+    #age 
     respondent_age = models.IntegerField(default = 0)
+    #Spanish Speaker
+    spanish_speaking = models.BooleanField(default=False)
     #Wave
     WAVEONE = 'W1'
     WAVETWO = 'W2'
