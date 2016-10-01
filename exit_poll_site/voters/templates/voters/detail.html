@@ -1,1 +1,6 @@
-{{ voter }}
+Name: {{ voter }} <br>
+Age: {{ voter.respondent_age }}<br>
+ID Number: {{ voter.respondent_id }}<br>
+Wave: {{ voter.respondent_wave }} <br>
+Phone Number 1: {{ voter.phone_no_one.phone_no }} <br>
+{% if not voter.first_call_made%} This is the first call. {% endif %}
