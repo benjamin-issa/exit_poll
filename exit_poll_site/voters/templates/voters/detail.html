@@ -2,7 +2,7 @@
 <b>Age:</b> {{ voter.respondent_age }}<br>
 <b>ID Number:</b> {{ voter.respondent_id }}<br>
 <b>Wave:</b> {{ voter.get_respondent_wave_display }} <br>
-<b>Phone Number:</b> {% if voter.get_phone_number is 1%} <i>There was an error getting a phone number. This might becasuse all phone numbers
+<b>Phone Number:</b> {% if voter.get_phone_number is 1%} <i>There was an error getting a phone number. This might be becasuse all phone numbers
 for this voter have been marked invalid.</i> {% endif %}
 {% if voter.get_phone_number is not 1%} {{voter.get_phone_number.phone_no}} {% endif %}
 
