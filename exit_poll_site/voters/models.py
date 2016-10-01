@@ -5,7 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 class Phone(models.Model):
-    phone_no = models.CharField(max_length=15)
+    phone_no = models.CharField(max_length=25)
     valid = models.BooleanField(default=True)
     user_marking_invalid = models.CharField(max_length=80, blank=True, null=True)
     #@python_2_unicode_compatible
@@ -16,7 +16,7 @@ class Voter(models.Model):
     #Name
     name = models.CharField(max_length=80)
     #ID number
-    respondent_id = models.CharField(max_length=15, default = None, null=True)
+    respondent_id = models.CharField(max_length=25, default = None, null=True)
     #age 
     respondent_age = models.IntegerField(default = 0)
     #Spanish Speaker
