@@ -119,14 +119,17 @@ class Voter(models.Model):
                 return False
         return False
     def took_survey(self):
-        if self.call_one_outcome == TOOKSURVEY:
+        if self.call_one_outcome == 'TS':
             return True
-        if self.call_two_outcome == TOOKSURVEY:
+        if self.call_two_outcome == 'TS':
             return True
-        if self.call_three_outcome == TOOKSURVEY:
+        if self.call_three_outcome == 'TS':
+            return True
+        if self.done_online_survey:
             return True
         return False
-    
+    took_survey.boolean = True
+    took_survey.short_description = 'Taken Survey Yet?'
     
     def get_phone_number(self):
         #If this is call one
