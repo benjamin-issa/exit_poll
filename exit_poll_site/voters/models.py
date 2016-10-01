@@ -126,3 +126,43 @@ class Voter(models.Model):
         if self.call_three_outcome == TOOKSURVEY:
             return True
         return False
+    
+    
+    def get_phone_number(self):
+        #If this is call one
+        if not self.call_one:
+            if self.phone_no_one is not None and self.phone_no_one.valid:
+                return self.phone_no_one
+            if self.phone_no_two is not None and self.phone_no_two.valid:
+                return self.phone_no_two
+            if self.phone_no_three is not None and self.phone_no_three.valid:
+                return self.phone_no_three
+            #error
+            return 1
+        #If this is call two
+        if not self.call_two and self.call_one:
+            if self.phone_no_two is not None and self.phone_no_two.valid:
+                return self.phone_no_two
+            if self.phone_no_one is not None and self.phone_no_one.valid:
+                 return self.phone_no_one
+            if self.phone_no_three is not None and self.phone_no_three.valid:
+                return self.phone_no_three
+            #error
+            return 1
+        #If this is call three
+        if not self.call_three and self.call_two:
+            if self.phone_no_three is not None and self.phone_no_three.valid:
+                return self.phone_no_three
+            if self.phone_no_one is not None and self.phone_no_one.valid:
+                return self.phone_no_one
+            if self.phone_no_two is not None and self.phone_no_two.valid:
+                return self.phone_no_two
+            #error
+            return 1
+        if self.phone_no_one is not None and self.phone_no_one.valid:
+                return self.phone_no_one
+        if self.phone_no_two is not None and self.phone_no_two.valid:
+            return self.phone_no_two
+        if self.phone_no_three is not None and self.phone_no_three.valid:
+            return self.phone_no_three
+        return 1
