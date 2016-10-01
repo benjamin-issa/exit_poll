@@ -1,6 +1,32 @@
-Name: {{ voter }} <br>
-Age: {{ voter.respondent_age }}<br>
-ID Number: {{ voter.respondent_id }}<br>
-Wave: {{ voter.respondent_wave }} <br>
-Phone Number 1: {{ voter.phone_no_one.phone_no }} <br>
+<b>Name:</b> {{ voter }} <br>
+<b>Age:</b> {{ voter.respondent_age }}<br>
+<b>ID Number:</b> {{ voter.respondent_id }}<br>
+<b>Wave:</b> {{ voter.get_respondent_wave_display }} <br>
+<b>Phone Number:</b> {{ voter.phone_no_one.phone_no }} <br>
+
+<br>
+
 {% if not voter.first_call_made%} This is the first call. {% endif %}
+{% if voter.first_call_made and not voter.second_call_made %} This is the second call. {% endif %}
+{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %} This is the third and final call. {% endif %}
+
+
+<br><br>
+
+{% if voter.first_call_made%} <b><u>First Call Information:</b></u> <br>
+<b>Time of First Call:</b> {{voter.call_one_time}} <br>
+<b>User Who Made the First Call:</b> {{voter.call_one_user}} <br>
+<b>First Call Outcome:</b> {{voter.get_call_one_outcome_display}}
+{% endif %}
+
+{% if voter.second_call_made%} <br><br><b><u>Second Call Information:</b></u> <br>
+<b>Time of Second Call:</b> {{voter.call_second_time}} <br>
+<b>User Who Made the Second Call:</b> {{voter.call_second_user}} <br>
+<b>Second Call Outcome:</b> {{voter.get_call_one_outcome_display}}
+{% endif %}
+
+{% if voter.third_call_made%} <br><br><b><u>Third Call Information:</b></u> <br>
+<b>Time of Third Call:</b> {{voter.call_third_time}} <br>
+<b>User Who Made the Third Call:</b> {{voter.call_third_user}} <br>
+<b>Third Call Outcome:</b> {{voter.get_call_three_outcome_display}}
+{% endif %}
