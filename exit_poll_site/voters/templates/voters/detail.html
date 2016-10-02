@@ -2,16 +2,16 @@
 <b>Age:</b> {{ voter.respondent_age }}<br>
 <b>ID Number:</b> {{ voter.respondent_id }}<br>
 <b>Wave:</b> {{ voter.get_respondent_wave_display }} <br>
-<b>Phone Number:</b> {% if voter.get_phone_number is 1%} <i>There was an error getting a phone number. This might be becasuse all phone numbers
-for this voter have been marked invalid.</i> {% endif %}
+<b>Phone Number:</b> {% if voter.get_phone_number is 1%} <i>There was an error getting a phone number. This might be becasuse all
+phone numbers for this voter have been marked invalid.</i> {% endif %}
 {% if voter.get_phone_number is not 1%} {{voter.get_phone_number.phone_no}} {% endif %}
 
 
 <br><br>
 
-{% if not voter.first_call_made%} This is the first call. {% endif %}
-{% if voter.first_call_made and not voter.second_call_made %} This is the second call. {% endif %}
-{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %} This is the third and final call. {% endif %}
+{% if not voter.first_call_made%} This is the <b>first</b> call. {% endif %}
+{% if voter.first_call_made and not voter.second_call_made %} This is the <b>second</b> call. {% endif %}
+{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %} This is the <b>third and final</b> call. {% endif %}
 
 
 <br><br>
@@ -33,3 +33,30 @@ for this voter have been marked invalid.</i> {% endif %}
 <b>User Who Made the Third Call:</b> {{voter.call_third_user}} <br>
 <b>Third Call Outcome:</b> {{voter.get_call_three_outcome_display}}
 {% endif %}
+
+<br><br>
+
+What happened when you called this voter? <br> <br> 
+
+<form action="{% url 'voters:result' voter.id %}" method="post">
+{% csrf_token %}
+    <input type="radio" name="result" id="Took Survey" value="TS" />
+    <label for="TS"> The voter took the survey. </label><br />
+    
+    <input type="radio" name="result" id="Not Home" value="NH" />
+    <label for="NH"> The voter wasn't home and you <i>didn't</i> leave a voicemail. </label><br />
+    
+    <input type="radio" name="result" id="Left Voicemail" value="LV" />
+    <label for="LV"> The voter wasn't home and you were <i>did</i> leave a voicemail. </label><br />
+    
+    <input type="radio" name="result" id="Requested Callback" value="RC" />
+    <label for="RC"> The voter requested someone call them back at another time. </label><br />
+    
+    <input type="radio" name="result" id="Soft Decline" value="SD" />
+    <label for="SD"> The voter declined to take the survey. (Soft Decline) </label><br />
+    
+    <input type="radio" name="result" id="Hard Decline" value="HD" />
+    <label for="HD"> The voter <i>adamantly</i> declined to take the survey. (Hard Decline) </label><br />
+<br><br>
+<input type="submit" value="Submit" />
+</form>
