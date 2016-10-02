@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 
 from .models import Voter
@@ -20,3 +20,6 @@ def detail(request, respondent_id):
     except Voter.DoesNotExist:
         raise Http404("No respondent with that respondent id was found.")
     return render(request, 'voters/detail.html', {'voter': voter})
+
+def result(request, voter_id):
+    return HttpResponse("Placeholder")
