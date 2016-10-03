@@ -22,4 +22,8 @@ def detail(request, respondent_id):
     return render(request, 'voters/detail.html', {'voter': voter})
 
 def result(request, voter_id):
-    return HttpResponse("Placeholder")
+    #selected_choice = get(pk=request.POST['result'])
+    result = request.POST['result']
+    if result == "TS":
+        return HttpResponse("hurray!")
+    return HttpResponse(result)
