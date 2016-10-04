@@ -6,15 +6,13 @@
 phone numbers for this voter have been marked invalid.</i> {% endif %}
 {% if voter.get_phone_number is not 1%} {{voter.get_phone_number.phone_no}} {% endif %}
 
-
 <br><br>
 
-{% if not voter.first_call_made%} This is the <b>first</b> call. {% endif %}
-{% if voter.first_call_made and not voter.second_call_made %} This is the <b>second</b> call. {% endif %}
-{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %} This is the <b>third and final</b> call. {% endif %}
-
-
-<br><br>
+{% if not voter.call_three and not voter.took_survey%} 
+{% if not voter.first_call_made%}This is the <b>first</b> call.{% endif %}
+{% if voter.first_call_made and not voter.second_call_made %}This is the <b>second</b> call. <br><br>{% endif %}
+{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %}This is the <b>third and final</b> call. <br><br>{% endif %}
+{% endif %}
 
 {% if voter.first_call_made%} <b><u>First Call Information:</b></u> <br>
 <b>Time of First Call:</b> {{voter.call_one_time}} <br>
@@ -23,19 +21,20 @@ phone numbers for this voter have been marked invalid.</i> {% endif %}
 {% endif %}
 
 {% if voter.second_call_made%} <br><br><b><u>Second Call Information:</b></u> <br>
-<b>Time of Second Call:</b> {{voter.call_second_time}} <br>
-<b>User Who Made the Second Call:</b> {{voter.call_second_user}} <br>
-<b>Second Call Outcome:</b> {{voter.get_call_one_outcome_display}}
+<b>Time of Second Call:</b> {{voter.call_two_time}} <br>
+<b>User Who Made the Second Call:</b> {{voter.call_two_user}} <br>
+<b>Second Call Outcome:</b> {{voter.get_call_two_outcome_display}}
 {% endif %}
 
 {% if voter.third_call_made%} <br><br><b><u>Third Call Information:</b></u> <br>
-<b>Time of Third Call:</b> {{voter.call_third_time}} <br>
-<b>User Who Made the Third Call:</b> {{voter.call_third_user}} <br>
+<b>Time of Third Call:</b> {{voter.call_three_time}} <br>
+<b>User Who Made the Third Call:</b> {{voter.call_three_user}} <br>
 <b>Third Call Outcome:</b> {{voter.get_call_three_outcome_display}}
 {% endif %}
 
-<br><br>
 
+{% if not voter.call_three and not voter.took_survey%} 
+<br><br>
 What happened when you called this voter? <br> <br> 
 
 <form action="{% url 'voters:result' voter.id %}" method="post">
@@ -49,7 +48,7 @@ What happened when you called this voter? <br> <br>
     <input type="radio" name="result" id="Left Voicemail" value="LV" />
     <label for="LV"> The voter wasn't home and you were <i>did</i> leave a voicemail. </label><br />
     
-    <input type="radio" name="result" id="Requested Callback" value="RC" />
+    <input type="radio" name="result" id="Requested Callback" value="CB" />
     <label for="RC"> The voter requested someone call them back at another time. </label><br />
     
     <input type="radio" name="result" id="Soft Decline" value="SD" />
@@ -63,3 +62,4 @@ What happened when you called this voter? <br> <br>
 <br><br>
 <input type="submit" value="Submit" />
 </form>
+{% endif %}
