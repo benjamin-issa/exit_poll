@@ -60,7 +60,7 @@ class Voter(models.Model):
     call_one = models.BooleanField(default=False, blank=True)
     call_one_time = models.DateTimeField('time of first call', blank=True, null=True)
     call_one_user = models.CharField(max_length=80, blank=True, null=True)
-    call_one_phone = models.ManyToManyField(Phone, related_name='phone for call one+', blank=True)
+    call_one_phone = models.OneToOneField(Phone, related_name='phone for call one+', blank=True, null=True)
     call_one_outcome = models.CharField(
         max_length=2,
         choices=OUTCOME_CHOICES,
@@ -71,7 +71,7 @@ class Voter(models.Model):
     call_two = models.BooleanField(default=False, blank=True)
     call_two_time = models.DateTimeField('time of second call', blank=True, null=True)
     call_two_user = models.CharField(max_length=80, blank=True, null=True)
-    call_two_phone = models.ManyToManyField(Phone, related_name='phone for call two+', blank=True)
+    call_two_phone = models.OneToOneField(Phone, related_name='phone for call two+', blank=True, null=True)
     call_two_outcome = models.CharField(
         max_length=2,
         choices=OUTCOME_CHOICES,
@@ -82,7 +82,7 @@ class Voter(models.Model):
     call_three = models.BooleanField(default=False, blank=True)
     call_three_time = models.DateTimeField('time of third call', blank=True, null=True)
     call_three_user = models.CharField(max_length=80, blank=True, null=True)
-    call_three_phone = models.ManyToManyField(Phone, related_name='phone for call three+', blank=True)
+    call_three_phone = models.OneToOneField(Phone, related_name='phone for call three+', blank=True, null=True)
     call_three_outcome = models.CharField(
         max_length=2,
         choices=OUTCOME_CHOICES,
@@ -130,6 +130,15 @@ class Voter(models.Model):
         return False
     took_survey.boolean = True
     took_survey.short_description = 'Taken Survey Yet?'
+   
+    def which_call(self):
+        if self.call_one == False:
+            return 1
+        if self.call_two == False:
+            return 2
+        if self.call_three == False:
+            return 3
+        return 0
     
     def get_phone_number(self):
         #If this is call one
