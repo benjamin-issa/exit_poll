@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0B0694;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li b {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a:hover:not(.active) {
+    background-color: #940648;
+}
+
+
+</style>
+<body>
+
+<ul>
+  <li><b>UCEP 2016 Phone System</b></li>
+  <li><a href="#home">Instructions</a></li>
+  <li><a href="{% url 'voters:random' %}">Make a Call &#x260E</a></li>
+  <li><a href="#contact">Lookup a Voter</a></li>
+  <li><a href="#about">Account</a></li>
+  <li><a href="#about">Logout</a></li>
+</ul>
+</body>
+<br>{% block content %}{% endblock %}
+</html>

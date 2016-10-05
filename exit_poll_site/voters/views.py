@@ -57,3 +57,6 @@ def result(request, voter_id):
         voter.save()
         return HttpResponse("Processed.")
     return HttpResponse(result)
+
+def random(request):
+    return HttpResponse("randomize page")

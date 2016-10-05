@@ -1,3 +1,13 @@
+{% extends "base.html" %}
+
+{% block content%}
+   
+{% if not voter.call_three and not voter.took_survey%}  
+<i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
+{% endif %}
+
+<br><br>
+    
 <b>Name:</b> {{ voter }} <br>
 <b>Age:</b> {{ voter.respondent_age }}<br>
 <b>ID Number:</b> {{ voter.respondent_id }}<br>
@@ -63,3 +73,4 @@ What happened when you called this voter? <br> <br>
 <input type="submit" value="Submit" />
 </form>
 {% endif %}
+{% endblock content%}

@@ -8,5 +8,6 @@ urlpatterns = [
     # ex: /voters/5/
     url(r'^(?P<respondent_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^(?P<voter_id>[0-9]+)/result/$', views.result, name='result'),
+    url(r'randomize/$', views.random, name='random'),
 
 ]
