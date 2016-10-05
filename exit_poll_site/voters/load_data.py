@@ -14,7 +14,7 @@ dataReader = csv.reader(open(csv_filepathname), delimiter=',', quotechar='"')
 # or import csv
 # dataReader = csv.reader(codecs.open(csv_filepathname, ‘rU’, ‘utf-16’))
 for row in dataReader:
-if row[0] != 'ZIPCODE': # Ignore the header row, import everything else
+if row[0] != 'Respondent ID': # Ignore the header row, import everything else
 vot = Voter()
 vot.respondent_id = row[0]
 vot.respondent_age = row[1]
