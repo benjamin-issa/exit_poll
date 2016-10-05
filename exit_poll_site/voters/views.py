@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from datetime import datetime   
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
+from random import randrange
 
 from .models import Voter, Phone
 
@@ -59,13 +60,41 @@ def result(request, voter_id):
     return HttpResponse(result)
 
 def random(request):
-    for voter in Voter.objects.all():
-        call_one_voters = []
-        if voter.which_call == 1 and voter.took_survey == False and voter.called_within_24_hours == False and voter.displayed_within_half_hour == False:
-            call_one_voters.append(voter)
-        if len(call_one_voters) != 0:
-            print"placeholder"
-    return HttpResponse("randomize page")
+    all_voters = Voter.objects.all()
+    #For call one
+    call_one_voters = []
+    for voter in all_voters:
+        if (voter.which_call() == 1 and voter.is_callable()):
+            call_one_voters.append(voter.pk)
+    if len(call_one_voters) != 0:
+        random_index = randrange(0,len(call_one_voters))
+        v = Voter.objects.get(pk=call_one_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(call_one_voters[random_index]))
+    #For call two
+    call_two_voters = []
+    for voter in all_voters:
+        if (voter.which_call() == 2 and voter.is_callable()):
+            call_two_voters.append(voter.pk)
+    if len(call_two_voters) != 0:
+        random_index = randrange(0,len(call_two_voters))
+        v = Voter.objects.get(pk=call_two_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
+    #For call three
+    call_three_voters = []
+    for voter in all_voters:
+        if (voter.which_call() == 3 and voter.is_callable()):
+            call_three_voters.append(voter.pk)
+    if len(call_three_voters) != 0:
+        random_index = randrange(0,len(call_three_voters))
+        v = Voter.objects.get(pk=call_three_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
+    return HttpResponse("According to the database, no calls need to be made. This is likely an error - please inform the supervisor.")
 
 def result_page(request):
     return render(request, 'voters/result_page.html')
