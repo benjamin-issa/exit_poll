@@ -16,14 +16,17 @@ dataReader = csv.reader(open(csv_filepathname), delimiter=',', quotechar='"')
 vot = Voter()
 for row in dataReader:
   if row[0] != 'Voter id': # Ignore the header row, import everything else
-    created = Voter.objects.create(
-      vot.name = row[0]
-      vot.respondent_id = row[1]
-      vot.respondent_age = row[2]
-      vot.respondent_wave = row[3]
-      vot.spanish_speaking = row[4]
-      vot.done_online_survey = row[5]
+    nm= 0
+    objnm ='voter'+nm
+    objnm= Voter.objects.create(
+      vot.respondent_id = row[0]
+      vot.name = row[1] + ' ' + row[3]
+      
+      vot.respondent_wave = row[5]
+      vot.spanish_speaking = row[6]
+      vot.done_online_survey = row[7])
       #vot.phone_no_one = row[6]
       #vot.phone_no_two = row[7]
       #vot.phone_no_three = row[8])
+      nm= nm+1
     vot.save()
