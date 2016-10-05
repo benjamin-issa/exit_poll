@@ -32,8 +32,8 @@ def result(request, voter_id):
         phone = voter.get_phone_number()
         phone.valid = False
         phone.save()
-        return HttpResponse("processed.")
-    #If voter took the survey
+        return HttpResponseRedirect('/voters/result_instructions')
+    #If the call was completed
     if result == "TS" or result == "NH" or result == "LV" or result == "CB" or result == "SD" or result == "HD":
         phone = voter.get_phone_number()
         if voter.which_call() == 3:
@@ -55,8 +55,17 @@ def result(request, voter_id):
            voter.call_one_user = "placeholder"
            voter.call_one_outcome = result
         voter.save()
-        return HttpResponse("Processed.")
+        return HttpResponseRedirect('/voters/result_instructions')
     return HttpResponse(result)
 
 def random(request):
+    for voter in Voter.objects.all():
+        call_one_voters = []
+        if voter.which_call == 1 and voter.took_survey == False and voter.called_within_24_hours == False and voter.displayed_within_half_hour == False:
+            call_one_voters.append(voter)
+        if len(call_one_voters) != 0:
+            print"placeholder"
     return HttpResponse("randomize page")
+
+def result_page(request):
+    return render(request, 'voters/result_page.html')

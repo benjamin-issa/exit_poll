@@ -35,6 +35,8 @@ class Voter(models.Model):
         choices=WAVE_CHOICES,
         default=WAVEONE,
     )
+    #Most Recent Display
+    last_display_time = models.DateTimeField('last time of display', blank=True, null=True)
     #Call Outcomes
     TOOKSURVEY = 'TS'
     LEFTVOICEMAIL = 'LV'
@@ -108,15 +110,22 @@ class Voter(models.Model):
             else:
                 return False
         if self.call_two == True:
-            if self.call_two_time >= timezone.now() - datetime.timedelta(days-1):
+            if self.call_two_time >= timezone.now() - datetime.timedelta(days=1):
                 return True
             else:
                 return False
         if self.call_one == True:
-            if self.call_one_time >= timezone.now() - datetime.timedelta(days-1):
+            if self.call_one_time >= timezone.now() - datetime.timedelta(days=1):
                 return True
             else:
                 return False
+        return False
+    
+    def displayed_within_half_hour(self):
+        if self.last_display_time == None:
+            return False
+        if self.last_display_time >= timezone.now() - datetime.timedelta(seconds=1800):
+            return True
         return False
     def took_survey(self):
         if self.call_one_outcome == 'TS':
