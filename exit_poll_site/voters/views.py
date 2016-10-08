@@ -64,7 +64,7 @@ def random(request):
     #For call one
     call_one_voters = []
     for voter in all_voters:
-        if (voter.which_call() == 1 and voter.is_callable() and (voter.phone_no_one.valid == True or voter.phone_no_two.valid == True or voter.phone_no_three.valid == True)):
+        if (voter.which_call() == 1 and voter.is_callable()):
             call_one_voters.append(voter.pk)
     if len(call_one_voters) != 0:
         random_index = randrange(0,len(call_one_voters))
@@ -75,7 +75,7 @@ def random(request):
     #For call two
     call_two_voters = []
     for voter in all_voters:
-        if (voter.which_call() == 2 and voter.is_callable() and (voter.phone_no_one.valid == True or voter.phone_no_two.valid == True or voter.phone_no_three.valid == True)):
+        if (voter.which_call() == 2 and voter.is_callable()):
             call_two_voters.append(voter.pk)
     if len(call_two_voters) != 0:
         random_index = randrange(0,len(call_two_voters))
@@ -86,7 +86,7 @@ def random(request):
     #For call three
     call_three_voters = []
     for voter in all_voters:
-        if (voter.which_call() == 3 and voter.is_callable() and (voter.phone_no_one.valid == True or voter.phone_no_two.valid == True or voter.phone_no_three.valid == True)):
+        if (voter.which_call() == 3 and voter.is_callable()):
             call_three_voters.append(voter.pk)
     if len(call_three_voters) != 0:
         random_index = randrange(0,len(call_three_voters))
