@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^(?P<voter_id>[0-9]+)/result/$', views.result, name='result'),
     url(r'randomize/$', views.random, name='random'),
     url(r'result_instructions/$', views.result_page, name='result_page'),
+    url(r'instructions/$', views.instructions, name='instructions'),
 ]

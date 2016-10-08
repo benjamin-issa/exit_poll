@@ -11,6 +11,8 @@ class Phone(models.Model):
     #@python_2_unicode_compatible
     def __str__(self):
         return self.phone_no
+    def is_valid(self):
+        return self.valid
 
 class Voter(models.Model):
     #Name
@@ -149,15 +151,6 @@ class Voter(models.Model):
             return 3
         return 0
     
-    def valid_phone_no(self):
-        if self.phone_no_one.valid == True:
-            return True
-        if self.phone_no_two != None and self.phone_no_two.valid == True:
-            return True
-        if self.phone_no_three != None and self.phone_no_three.valid == True:
-            return True
-        return False
-    
     def is_callable(self):
         if self.call_three == True:
             return False
@@ -166,8 +159,6 @@ class Voter(models.Model):
         if self.called_within_24_hours() == True:
             return False
         if self.displayed_within_half_hour() == True:
-            return False
-        if self.valid_phone_no() == True:
             return False
         if self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
             return False
