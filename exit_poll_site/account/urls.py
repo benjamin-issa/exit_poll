@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'login/$', views.login, name='login'),
     url(r'authenticate/$', views.authenticate, name='authenticate'),
     url(r'loginfail/$', views.loginfail, name='loginfail'),
+    url(r'logout/$', views.logout, name='logout'),
 ]
+

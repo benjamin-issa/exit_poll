@@ -3,9 +3,10 @@ from datetime import datetime
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from random import randrange
-
+from django.contrib.auth.decorators import login_required
 from .models import Voter, Phone
 
+@login_required
 def index(request):
     voter_list = Voter.objects.order_by('-respondent_id')[:30000]
     output = ', '.join([v.name for v in voter_list])
@@ -15,6 +16,7 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required
 def detail(request, respondent_id):
     try:
         voter = Voter.objects.get(pk=respondent_id)
@@ -22,6 +24,7 @@ def detail(request, respondent_id):
         raise Http404("No respondent with that respondent id was found.")
     return render(request, 'voters/detail.html', {'voter': voter})
 
+@login_required
 def result(request, voter_id):
     voter = get_object_or_404(Voter, pk=voter_id)
     try:
@@ -59,6 +62,7 @@ def result(request, voter_id):
         return HttpResponseRedirect('/voters/result_instructions')
     return HttpResponse(result)
 
+@login_required
 def random(request):
     all_voters = Voter.objects.all()
     #For call one
@@ -96,9 +100,11 @@ def random(request):
         return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
     return render(request, 'voters/error.html')
 
+@login_required
 def result_page(request):
     return render(request, 'voters/result_page.html')
 
+@login_required
 def instructions(request):
     return render(request, 'voters/instructions.html')
 

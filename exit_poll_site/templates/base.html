@@ -39,10 +39,12 @@ a:hover:not(.active) {
 
 <ul>
   <li><b>UCEP 2016 Contact Generator</b></li>
+  {% if user.is_authenticated %} 
   <li><a href="{% url 'voters:instructions' %}">Instructions</a></li>
   <li><a href="{% url 'voters:random' %}">Make a Call &#x260E</a></li>
-  <li><a href="#about">Account</a></li>
-  <li><a href="#about">Login/Logout</a></li>
+  <li><a href="#about">Account ({{user.get_full_name}})</a></li>
+  <li><a href="{% url 'account:logout' %}">Logout</a></li>
+  {% endif %} 
 </ul>
 </body>
 <br>{% block content %}{% endblock %}
