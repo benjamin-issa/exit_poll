@@ -1,0 +1,8 @@
+To-Do for Deployment:
+1. Delete development database
+2. Change debug to false.
+3. Run manage.py check --deploy
+4. Configure "Allowed Hosts"
+5. CSRF_COOKIE_SECURE = True
+6. SESSION_COOKIE_SECURE = True
+7. Configure Logging
