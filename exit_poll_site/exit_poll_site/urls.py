@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^voters/', include('voters.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^account/', include('account.urls')),
 ]

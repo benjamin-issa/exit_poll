@@ -101,3 +101,4 @@ def result_page(request):
 
 def instructions(request):
     return render(request, 'voters/instructions.html')
+
