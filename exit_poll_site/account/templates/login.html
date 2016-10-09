@@ -1,59 +1,21 @@
 {% extends "base.html" %}
 
 {% block content%}
-<style>
-form {
-    border: 3px solid #f1f1f1;
-}
-
-input[type=text], input[type=password] {
-    width: 40%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #940648;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 20%;
-}
-
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-</style>
-<body>
-
-<h2>Login</h2>
-
-  <div class="container">
-    <label><b>Username</b></label><br>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-<br>
-    <label><b>Password</b></label><br>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        <br>
-    <button type="submit">Login</button>
-
-
+    
+<h2>Welcome! Please login to continue.</h2> <br>
+<form action="{% url 'account:authenticate' %}" method="post">
+    {% csrf_token %}
+    <div >
+        <label for='username'> Username: </label>
+        <input type='text' name='Username' id='username'> <br><br>
+        <label for='password'>Password:  </label>
+        <input type='password' name='Password' id='password'><br><br>
+        <input type='submit' value='Login'>
+    </div>
 </form>
 
 
-<br><br> <i>If this is your first time logging in, your username is your NetId and your password is your student ID number
+<br><br> <i>If this is your first time logging in, your username is your Net Id and your password is your student ID number
 exactly as you entered it in the volunteer form. If you cannot remember your password, please speak to a supervisor. If
 this is your first time logging in, remember to change your password as soon as you login.</i>
 {% endblock content%}
