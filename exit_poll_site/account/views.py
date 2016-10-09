@@ -3,18 +3,23 @@ from datetime import datetime
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from random import randrange
-
-# Create your views here.
+from django.contrib.auth import authenticate as auth
+import django.middleware.csrf
 
 def login(request):
     return render (request, 'login.html')
 
 def authenticate(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    user = auth.authenticate(username = username, password = password)      
+    usern = request.POST.get('username', '')
+    passw = request.POST.get('password', '')
+    return HttpResponse("Username: " + usern + "     Password: " + passw)
+    user = auth(username = usern, password = passw)      
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/accounts/loggedin')
+        return HttpResponseRedirect('/voters/instructions')
     else:
-        return HttpResponseRedirect('/accounts/invalid')
+        return HttpResponseRedirect('/account/loginfail')
+
+def loginfail(request):
+    return render (request, 'loginfail.html')
+

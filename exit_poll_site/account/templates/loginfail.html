@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content%}
+    
+<h2><font color = "red">The username and password were incorrect. Please try again.</h2> <br>
+<form action="{% url 'account:authenticate' %}" method="post">
+    {% csrf_token %}
+    <div >
+        <label for='username'> Username: </label>
+        <input type='text' name='Username' id='username'> <br><br>
+        <label for='password'>Password:  </label>
+        <input type='password' name='Password' id='password'><br><br>
+        <input type='submit' value='Login'>
+    </div>
+</form>
+
+
+<br><br> <i>If this is your first time logging in, your username is your Net Id and your password is your student ID number
+exactly as you entered it in the volunteer form. If you cannot remember your password, please speak to a supervisor. If
+this is your first time logging in, remember to change your password as soon as you login.</i>
+{% endblock content%}
