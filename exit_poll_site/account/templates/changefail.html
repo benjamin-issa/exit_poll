@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+li a {
+}
+
+a:hover:not(.active) {
+}
+
+
+{% block content%}
+    Sorry, there was an error. Are you sure the two password fields matched? <a href="{% url 'account:accountdetail' %}">Click here</a> to try again.
+{% endblock content%}

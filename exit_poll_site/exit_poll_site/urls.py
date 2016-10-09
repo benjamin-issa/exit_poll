@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     url(r'^voters/', include('voters.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('account.urls')),
+    url(r'^$', RedirectView.as_view(url='/account/login', permanent=False), name='index'),
 ]

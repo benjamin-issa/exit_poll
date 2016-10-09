@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content%}
+<h2>Account Details</h2>
+<b>First Name:</b> {{user.get_short_name}}<br><br>
+<b>Last Name:</b> {{user.last_name}}<br><br>
+<b>Net ID:</b> {{user.get_username}}<br><br>
+<b>Email Address:</b> {{user.email}}<br><br>
+
+<i>If any of the above information is incorrect, please speak to a supervisor.</i><br><br>
+
+<h2>Change Password</h2>
+To change your password, please use the form below. Note that changing your password will log you out, and you will need to log
+in again. <br><br>
+
+<form action="{% url 'account:changepassword' %}" method="post">
+    {% csrf_token %}
+    <div >
+        <label for='password1'> Enter Your New Password: </label>
+        <input type='password' name='password1' id='password1'> <br><br>
+        <label for='password2'>Confrm Your Password:  </label>
+        <input type='password' name='password2' id='password2'><br><br>
+        <input type='submit' value='Change Password'>
+    </div>
+</form>
+
+{% endblock content%}

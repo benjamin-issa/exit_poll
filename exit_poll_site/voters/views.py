@@ -35,6 +35,7 @@ def result(request, voter_id):
     if result == "DC":
         phone = voter.get_phone_number()
         phone.valid = False
+        phone.user_marking_invalid = request.user.get_full_name()
         phone.save()
         return HttpResponseRedirect('/voters/result_instructions')
     #If the call was completed
@@ -44,19 +45,19 @@ def result(request, voter_id):
             voter.call_three_phone = phone
             voter.call_three = True
             voter.call_three_time = datetime.now()
-            voter.call_three_user = "placeholder"
+            voter.call_three_user = request.user.get_full_name()
             voter.call_three_outcome = result
         if voter.which_call() == 2:
             voter.call_two_phone = phone
             voter.call_two = True
             voter.call_two_time = datetime.now()
-            voter.call_two_user = "placeholder"
+            voter.call_two_user = request.user.get_full_name()
             voter.call_two_outcome = result
         if voter.which_call() == 1:
            voter.call_one_phone = phone
            voter.call_one = True
            voter.call_one_time = datetime.now()
-           voter.call_one_user = "placeholder"
+           voter.call_one_user = request.user.get_full_name()
            voter.call_one_outcome = result
         voter.save()
         return HttpResponseRedirect('/voters/result_instructions')
