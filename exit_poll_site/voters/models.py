@@ -20,7 +20,7 @@ class Voter(models.Model):
     #ID number
     respondent_id = models.CharField(max_length=25, default = None, null=True)
     #age 
-    respondent_age = models.IntegerField(default = 0, null=True, blank=True)
+    respondent_age = models.CharField(max_length=8, default = '0', null=True)
     #Spanish Speaker
     spanish_speaking = models.BooleanField(default=False)
     #Wave
