@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%d-!4^%tlv*!n+gc983&d(1t*9hc^^56go2m4j@=#2ft#&$&0v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ucep-phone.org']
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'exit_poll_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ucep-db',
+        'USER': 'administrator',
+        'PASSWORD': 'kXgkbOt8IkTx',
+        'HOST': 'ucep-db.cugkjcp8z70e.us-east-1.rds.amazonaws.com:3306',
+        'PORT': '3306',
     }
 }
 
@@ -123,3 +127,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/account/login/'
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
