@@ -27,9 +27,11 @@ with open('C:\Users\Beers\Downloads\call_list_test.csv', 'rb') as f:
       
       ph_num1=row[7]
       val1=True
-      if ph_num1.isspace()==True:
-        val1=False
       if ph_num1==".":
+        val1=False
+      if ph_num1=="N/A":
+        val1=False
+      if ph_num1=="0":
         val1=False
 
       ph_num2=row[8]
