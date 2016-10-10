@@ -6,3 +6,4 @@ To-Do for Deployment:
 5. CSRF_COOKIE_SECURE = True
 6. SESSION_COOKIE_SECURE = True
 7. Configure Logging
+8. Update static files.
