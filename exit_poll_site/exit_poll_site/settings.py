@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'exit_poll_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ucep-db',
+        'NAME': 'ebdb',
         'USER': 'administrator',
         'PASSWORD': 'kXgkbOt8IkTx',
-        'HOST': 'ucep-db.cugkjcp8z70e.us-east-1.rds.amazonaws.com:3306',
+        'HOST': 'aa3ax0i3l3x1lj.cugkjcp8z70e.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
