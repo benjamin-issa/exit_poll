@@ -3,7 +3,7 @@ from voters.models import Voter
 from voters.models import Phone
 i=0
 blank=""
-with open('C:\Users\Beers\Downloads\call_list_test.csv', 'rb') as f:
+with open('/opt/python/current/app/2014.csv', 'rb') as f:
     reader = csv.reader(f)
     for row in reader:
       for i, x in enumerate(row):

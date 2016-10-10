@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'ebdb',
         'USER': 'administrator',
         'PASSWORD': 'kXgkbOt8IkTx',
-        'HOST': 'aa3ax0i3l3x1lj.cugkjcp8z70e.us-east-1.rds.amazonaws.com',
+        'HOST': 'aa16xezdtfvkpj8.cugkjcp8z70e.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
