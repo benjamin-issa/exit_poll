@@ -130,3 +130,7 @@ LOGIN_URL = '/account/login/'
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+
+STATIC_ROOT=os.path.join(BASE_DIR,'static/')
+
