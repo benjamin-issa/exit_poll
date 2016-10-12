@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<h2>Lookup A Voter</h2>
+
+<i>You should only use this page if a supervisor directs you to do so.</i>
+<br><br><br>
+<form action="{% url 'voters:processvl' %}" method="post">
+    {% csrf_token %}
+    <div >
+        <label for='voter_id'> Voter's ID Number: </label>
+        <input type='text' name='voter_id' id='voter_id'> <br><br>
+        <input type='submit' value='Look Up Voter'>
+    </div>
+</form>
+
+{% endblock content%}

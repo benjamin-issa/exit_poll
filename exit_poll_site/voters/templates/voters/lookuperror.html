@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<h2>Lookup A Voter</h2>
+
+
+<font color = "red">Sorry, there was an error.</font> Are you sure a voter with that ID number exists? <br><br>
+
+<a href="{% url 'voters:lookup' %}">Try Again</a>
+
+{% endblock content%}

@@ -11,4 +11,7 @@ urlpatterns = [
     url(r'randomize/$', views.random, name='random'),
     url(r'result_instructions/$', views.result_page, name='result_page'),
     url(r'instructions/$', views.instructions, name='instructions'),
+    url(r'lookup/$', views.lookup, name='lookup'),
+    url(r'processvl/$', views.processvl, name='processvl'),
+    url(r'lookuperror/$', views.lookuperror, name='lookuperror'),
 ]

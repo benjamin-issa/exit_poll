@@ -109,3 +109,20 @@ def result_page(request):
 def instructions(request):
     return render(request, 'voters/instructions.html')
 
+@login_required
+def lookup(request):
+    return render(request, 'voters/lookup.html')
+
+@login_required
+def processvl(request):
+    voters = Voter.objects.all()
+    vid = request.POST.get('voter_id', '')
+    if voters.filter(respondent_id=vid).exists():
+        voter = Voter.objects.get(respondent_id=vid)
+        return HttpResponseRedirect('/voters/' + str(voter.pk))
+    else:
+        return render(request, 'voters/lookuperror.html')
+    
+@login_required
+def lookuperror(request):
+    return render(request, 'voters/lookuperror.html')
