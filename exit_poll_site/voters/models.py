@@ -151,22 +151,34 @@ class Voter(models.Model):
             return 3
         return 0
     
+    def valid_phone(self):
+        if self.phone_no_one is not None and self.phone_no_one.valid:
+            return True
+        if self.phone_no_two is not None and self.phone_no_two.valid:
+            return True
+        if self.phone_no_three is not None and self.phone_no_three.valid:
+            return True
+        return False
+    
     def is_callable(self):
         if self.call_three == True:
             return False
-        if self.took_survey() == True:
+        elif self.took_survey() == True:
             return False
-        if self.called_within_24_hours() == True:
+        elif self.called_within_24_hours() == True:
             return False
-        if self.displayed_within_half_hour() == True:
+        elif self.displayed_within_half_hour() == True:
             return False
-        if self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
+        elif self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
             return False
-        if self.call_two_outcome == "SD" or self.call_two_outcome == "HD":
+        elif self.call_two_outcome == "SD" or self.call_two_outcome == "HD":
             return False
-        if self.call_three_outcome == "SD" or self.call_three_outcome == "HD":
+        elif self.call_three_outcome == "SD" or self.call_three_outcome == "HD":
             return False
-        return True
+        elif self.valid_phone() == False:
+            return False
+        else:
+            return True
     
     def get_phone_number(self):
         #If this is call one

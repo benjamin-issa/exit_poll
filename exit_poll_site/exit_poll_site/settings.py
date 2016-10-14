@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/account/login/'
+
+RECAPTCHA_PUBLIC_KEY = '6Lf7OwkUAAAAAA6I_IkDsyaZtuCUvMNufvfd4Vra'
+RECAPTCHA_PRIVATE_KEY = '6Lf7OwkUAAAAAKaoIgla6_Iwob5Y8PWwwmqGqeZn'
+NOCAPTCHA = True
