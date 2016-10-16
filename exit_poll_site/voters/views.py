@@ -119,6 +119,7 @@ def processvl(request):
     vid = request.POST.get('voter_id', '')
     if voters.filter(respondent_id=vid).exists():
         voter = Voter.objects.get(respondent_id=vid)
+        voter.last_display_time = datetime.now()
         return HttpResponseRedirect('/voters/' + str(voter.pk))
     else:
         return render(request, 'voters/lookuperror.html')
