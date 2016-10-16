@@ -2,7 +2,7 @@
 
 {% block content%}
    
-{% if not voter.call_three and not voter.took_survey and voter.is_callable%}  
+{% if not voter.call_three and not voter.took_survey and voter.valid_phone%}  
 <i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
 {% endif %}
 
@@ -18,7 +18,7 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 
 <br><br>
 
-{% if not voter.call_three and not voter.took_survey and voter.is_callable%} 
+{% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
 {% if not voter.first_call_made%}This is the <b>first</b> call.{% endif %}
 {% if voter.first_call_made and not voter.second_call_made %}This is the <b>second</b> call. <br><br>{% endif %}
 {% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %}This is the <b>third and final</b> call. <br><br>{% endif %}
@@ -43,7 +43,7 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 {% endif %}
 
 
-{% if not voter.call_three and not voter.took_survey and voter.is_callable%} 
+{% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
 <br><br>
 What happened when you called this voter? <br> <br> 
 
