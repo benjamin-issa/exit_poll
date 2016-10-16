@@ -27,10 +27,12 @@ class Voter(models.Model):
     WAVEONE = 'W1'
     WAVETWO = 'W2'
     WAVETHREE = 'W3'
+    WAVEFOUR = 'W4'
     WAVE_CHOICES = (
          (WAVEONE, 'Wave One'),
          (WAVETWO, 'Wave Two'),
          (WAVETHREE, 'Wave Three'),
+         (WAVEFOUR, 'Wave Four'),
     )
     respondent_wave = models.CharField(
         max_length=2,

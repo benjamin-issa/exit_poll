@@ -6,14 +6,17 @@
 
 
 
-<b>Export Contract Generator Information to CSV</b><br><br>
+<b>Export Contract Generator Information to CSV (Coming in a Later Release)</b><br><br>
 
-<b>Print Emergancy Call Sheets</b><br><br>
+<b>Print Emergancy Call Sheets (Coming in a Later Release)</b><br><br>
 
-<a href="{% url 'admin:index' %}">Access Users / Database</a><br><br><br>
+<a href="{% url 'admin:index' %}">Access Users / Database</a><br><br>
 
 <h2><u>Response Rate Overview</u></h2>
-Total Number of Respondents in System: {{ voters.count }} <br><br>
-Number of people in Wave One: 
+<b>Current Overall Response Rate (All Waves): {{voters_took_survey.count}}/{{voters.count}} ({{response_rate}}%) </b>
+<br><br><u>Number of Potential Respondents in Wave One</u>: {{ voters_waveone.count }} <br>
+        &nbsp; &nbsp; &nbsp; &nbsp;Response Rate for Wave One: {{w1_voters_took_survey.count}}/{{voters_waveone.count}} ({{w1_response_rate}}%)<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;# of Wave One phone participants: {{w1_phone.count}}<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;# of Wave One online participants: {{w1_internet.count}} 
 
 {% endblock content%}
