@@ -8,6 +8,20 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from account.forms import LoginForm
+from django.views.generic.edit import FormView
+from django import forms
+import requests
+from recaptcha.client import captcha
+from requests.auth import HTTPDigestAuth
+import json
+
+def valid_captcha(challenge_field, response_field, private_key):
+    url = "https://www.google.com/recaptcha/api/siteverify"
+    data = {'secret': '6Lf7OwkUAAAAAKaoIgla6_Iwob5Y8PWwwmqGqeZn', 'response':response_field}
+    response = requests.post(url, data=data)
+    r = response.json()
+    return r['success']
 
 
 def login(request):
@@ -15,13 +29,19 @@ def login(request):
         return HttpResponseRedirect('/voters/instructions/')
     return render (request, 'login.html')
 
+    
 def authenticate(request):
     usern = request.POST.get('Username', '')
     passw = request.POST.get('Password', '')
-    user = auth(username = usern, password = passw)      
-    if user is not None:
-        auth_login(request, user)
-        return HttpResponseRedirect('/voters/instructions')
+    captcha_response = request.POST.get('g-recaptcha-response','')
+    captcha_check = valid_captcha(captcha_response, captcha_response, "6Lf7OwkUAAAAAKaoIgla6_Iwob5Y8PWwwmqGqeZn")
+    if captcha_check == True:
+        user = auth(username = usern, password = passw)      
+        if user is not None:
+            auth_login(request, user)
+            return HttpResponseRedirect('/voters/instructions')
+        else:
+            return HttpResponseRedirect('/account/loginfail')
     else:
         return HttpResponseRedirect('/account/loginfail')
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
     
 <head>
-<title>UCEP Contact Generator</title> 
+<title>UCEP Contact Generator</title>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <html lang="en">
 <style>
@@ -48,7 +49,9 @@ a:hover:not(.active) {
   <li><a href="{% url 'voters:random' %}">Make a Call &#x260E</a></li>
   <li><a href="{% url 'voters:lookup' %}">Lookup a Voter</a></li>
   <li><a href="{% url 'account:accountdetail' %}">Account ({{user.get_full_name}})</a></li>
+  {% if user.is_staff %} 
   <li><a href="{% url 'administration:index' %}">Supervisors</a></li>
+  {% endif %} 
   <li><a href="{% url 'account:logout' %}">Logout</a></li>
   {% endif %} 
 </ul>

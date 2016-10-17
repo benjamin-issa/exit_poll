@@ -2,7 +2,7 @@
 
 {% block content%}
     
-<h2><font color = "red">The username and password were incorrect. Please try again.</font></h2> <br>
+<h2><font color = "red">There was an error. Are you sure the username and password were correct?</font></h2> <br>
 <form action="{% url 'account:authenticate' %}" method="post">
     {% csrf_token %}
     <div >
@@ -10,6 +10,7 @@
         <input type='text' name='Username' id='username'> <br><br>
         <label for='password'>Password:  </label>
         <input type='password' name='Password' id='password'><br><br>
+        <div class="g-recaptcha" data-sitekey="6Lf7OwkUAAAAAA6I_IkDsyaZtuCUvMNufvfd4Vra"></div><br>
         <input type='submit' value='Login'>
     </div>
 </form>
