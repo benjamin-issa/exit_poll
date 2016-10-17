@@ -3,7 +3,7 @@ from voters.models import Voter
 from voters.models import Phone
 i=0
 blank=""
-with open('C:\Users\Beers\Downloads\call_list_test.csv', 'rb') as f:
+with open('import_voters.csv', 'rb') as f:
     reader = csv.reader(f)
     for row in reader:
       for i, x in enumerate(row):
@@ -12,7 +12,7 @@ with open('C:\Users\Beers\Downloads\call_list_test.csv', 'rb') as f:
                          i=i+1
       r_id= row[0]
 # change the following choice if it is not wave one
-      r_wave= "Wave One"
+      r_wave= "W1"
       age=row[10]
       if age.isspace()==True:
         age= "0"

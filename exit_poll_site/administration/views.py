@@ -6,8 +6,10 @@ from random import randrange
 from django.contrib.auth.decorators import login_required
 from voters.models import Voter, Phone
 from django.db.models import Q
+from django.contrib.admin.views.decorators import staff_member_required
 
-@login_required
+
+@staff_member_required
 def index(request):
     voters = Voter.objects.all()
     voters_waveone = Voter.objects.filter(respondent_wave__exact = "W1")
