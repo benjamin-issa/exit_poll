@@ -1,10 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from datetime import datetime   
+from datetime import datetime, timedelta
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from random import randrange
 from django.contrib.auth.decorators import login_required
 from .models import Voter, Phone
+from django.db.models import Q
+from django.utils import timezone
+
+
 
 @login_required
 def index(request):
@@ -65,29 +69,60 @@ def result(request, voter_id):
 
 @login_required
 def random(request):
-    all_voters = Voter.objects.all()
+    #all_voters = Voter.objects.all()
     #For call one
-    call_one_voters = []
-    for voter in all_voters:
-        if (voter.which_call() == 1 and voter.is_callable()):
-            call_one_voters.append(voter.pk)
-    if len(call_one_voters) != 0:
-        random_index = randrange(0,len(call_one_voters))
-        v = Voter.objects.get(pk=call_one_voters[random_index])
+    #call_one_voters = []
+    #for voter in all_voters:
+    #    if (voter.which_call() == 1 and voter.is_callable()):
+    #        call_one_voters.append(voter.pk)
+    #if len(call_one_voters) != 0:
+    #    random_index = randrange(0,len(call_one_voters))
+    #    v = Voter.objects.get(pk=call_one_voters[random_index])
+    #    v.last_display_time = datetime.now()
+    #    v.save()
+    #    return HttpResponseRedirect ('/voters/' + str(call_one_voters[random_index]))
+    
+    half_hour_prev = timezone.now() - timedelta(seconds=1800)
+    
+    #Call One optimized Database Query
+    callone_callable = Voter.objects.filter(Q(phone_no_one__isnull = False) | Q(phone_no_two__isnull = False) | Q(phone_no_three__isnull = False),
+                                            Q(phone_no_one__valid = True) | Q(phone_no_two__valid = True) | Q(phone_no_three__valid = True),
+                                            Q(last_display_time__isnull = True) | Q(last_display_time__gt = half_hour_prev),
+                                            call_one = False, done_online_survey = False)
+    if callone_callable.count() != 0:
+        size = callone_callable.count()
+        random_index = randrange(0, size)
+        v = callone_callable[random_index]
         v.last_display_time = datetime.now()
         v.save()
-        return HttpResponseRedirect ('/voters/' + str(call_one_voters[random_index]))
+        return HttpResponseRedirect ('/voters/' + str(v.pk))
+    
     #For call two
-    call_two_voters = []
-    for voter in all_voters:
-        if (voter.which_call() == 2 and voter.is_callable()):
-            call_two_voters.append(voter.pk)
-    if len(call_two_voters) != 0:
-        random_index = randrange(0,len(call_two_voters))
-        v = Voter.objects.get(pk=call_two_voters[random_index])
+    #call_two_voters = []
+    #for voter in all_voters:
+    #    if (voter.which_call() == 2 and voter.is_callable()):
+    #        call_two_voters.append(voter.pk)
+    #if len(call_two_voters) != 0:
+    #    random_index = randrange(0,len(call_two_voters))
+    #    v = Voter.objects.get(pk=call_two_voters[random_index])
+    #    v.last_display_time = datetime.now()
+    #    v.save()
+    #    return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
+    
+    calltwo_callable = Voter.objects.filter(Q(phone_no_one__isnull = False) | Q(phone_no_two__isnull = False) | Q(phone_no_three__isnull = False),
+                                            Q(phone_no_one__valid = True) | Q(phone_no_two__valid = True) | Q(phone_no_three__valid = True),
+                                            Q(last_display_time__isnull =True) | Q(last_display_time__gte = timezone.now() - timedelta(seconds=1800)),
+                                            Q(call_one_time__isnull = True) | Q(call_one_time__gte = timezone.now() - timedelta(days = 1) ),
+                                            ~Q(call_one_outcome = "TS"), ~Q(call_one_outcome = "SD"), ~Q(call_one_outcome = "HD"),
+                                            call_two = False, call_one = True, done_online_survey = False)
+    if calltwo_callable.count() != 0:
+        size = calltwo_callable.count()
+        random_index = randrange(0, size)
+        v = calltwo_callable[random_index]
         v.last_display_time = datetime.now()
         v.save()
-        return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
+        return HttpResponseRedirect ('/voters/' + str(v.pk))
+    
     #For call three
     call_three_voters = []
     for voter in all_voters:
