@@ -15,8 +15,8 @@ with open('import_users.csv', 'rb') as f:
       email_address = row[3]
       net_id = row[4]
       password = row[5]
-    
-      u = User.objects.create_user(net_id, email_address, password)
-      u.last_name = last_name
-      u.first_name = first_name
-      u.save()
+      if not User.objects.filter(username=net_id).exists():
+        u = User.objects.create_user(net_id, email_address, password)
+        u.last_name = last_name
+        u.first_name = first_name
+        u.save()

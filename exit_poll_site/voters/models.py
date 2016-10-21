@@ -107,28 +107,28 @@ class Voter(models.Model):
     #@python_2_unicode_compatible
     def __str__(self):
         return self.name
-    def called_within_24_hours(self):
+    def called_within_3_hours(self):
         if self.call_three == True:
-            if self.call_three_time >= timezone.now() - datetime.timedelta(days=1):
+            if self.call_three_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_two == True:
-            if self.call_two_time >= timezone.now() - datetime.timedelta(days=1):
+            if self.call_two_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_one == True:
-            if self.call_one_time >= timezone.now() - datetime.timedelta(days=1):
+            if self.call_one_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         return False
     
-    def displayed_within_half_hour(self):
+    def displayed_within_hour(self):
         if self.last_display_time == None:
             return False
-        if self.last_display_time >= timezone.now() - datetime.timedelta(seconds=1800):
+        if self.last_display_time >= timezone.now() - datetime.timedelta(seconds=3600):
             return True
         return False
     def took_survey(self):
@@ -167,9 +167,9 @@ class Voter(models.Model):
             return False
         elif self.took_survey() == True:
             return False
-        elif self.called_within_24_hours() == True:
+        elif self.called_within_3_hours() == True:
             return False
-        elif self.displayed_within_half_hour() == True:
+        elif self.displayed_within_hour() == True:
             return False
         elif self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
             return False
