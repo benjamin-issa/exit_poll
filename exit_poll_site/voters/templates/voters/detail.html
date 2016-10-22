@@ -9,7 +9,6 @@
 <br><br>
     
 <b>Name:</b> {{ voter }} <br>
-<b>Age:</b> {{ voter.respondent_age }}<br>
 <b>ID Number:</b> {{ voter.respondent_id }}<br>
 <b>Wave:</b> {{ voter.get_respondent_wave_display }} <br>
 <b>Phone Number:</b> {% if voter.get_phone_number is 1%} <i>There was an error getting a phone number. This might be becasuse all
@@ -68,7 +67,7 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
     <label for="HD"> The voter <b><i>adamantly</i> declined</b> to take the survey. (Hard Decline) </label><br /><br>
     
     <input type="radio" name="result" id="Disconnected" value="DC" />
-    <label for="DC"> The phone number was <b>disconnected</b> or not in service. </label>
+    <label for="DC"> This was an <b>invalid phone number</b>. (Wrong number, disconnected, not in service, etc.) </label>
 <br><br>
 <input type="submit" value="Submit" />
 </form>
