@@ -41,6 +41,30 @@ def result(request, voter_id):
     #If the call was completed
     if result == "TS" or result == "NH" or result == "LV" or result == "CB" or result == "SD" or result == "HD":
         phone = voter.get_phone_number()
+        if voter.which_call() == 7:
+            voter.call_seven_phone = phone
+            voter.call_seven = True
+            voter.call_seven_time = datetime.now()
+            voter.call_seven_user = request.user.get_full_name()
+            voter.call_seven_outcome = result
+        if voter.which_call() == 6:
+            voter.call_six_phone = phone
+            voter.call_six = True
+            voter.call_six_time = datetime.now()
+            voter.call_six_user = request.user.get_full_name()
+            voter.call_six_outcome = result
+        if voter.which_call() == 5:
+            voter.call_five_phone = phone
+            voter.call_five = True
+            voter.call_five_time = datetime.now()
+            voter.call_five_user = request.user.get_full_name()
+            voter.call_five_outcome = result
+        if voter.which_call() == 4:
+            voter.call_four_phone = phone
+            voter.call_four = True
+            voter.call_four_time = datetime.now()
+            voter.call_four_user = request.user.get_full_name()
+            voter.call_four_outcome = result
         if voter.which_call() == 3:
             voter.call_three_phone = phone
             voter.call_three = True
