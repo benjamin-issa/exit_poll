@@ -45,32 +45,35 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 
 {% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
 <br><br>
-What happened when you called this voter? <br> <br> 
+<u>What happened when you called this voter? </u><br> <br> 
 
 <form action="{% url 'voters:result' voter.id %}" method="post">
 {% csrf_token %}
     <input type="radio" name="result" id="Took Survey" value="TS" />
-    <label for="TS"> The voter took the survey. </label><br />
+    <label for="TS"> The voter <b>took the survey.</b> </label><br /><br>
     
     <input type="radio" name="result" id="Not Home" value="NH" />
-    <label for="NH"> The voter wasn't home and you <i>didn't</i> leave a voicemail. </label><br />
+    <label for="NH"> The voter <b>wasn't home</b> and you <i>didn't</i> leave a voicemail. </label><br /><br>
     
     <input type="radio" name="result" id="Left Voicemail" value="LV" />
-    <label for="LV"> The voter wasn't home and you <i>did</i> leave a voicemail. </label><br />
+    <label for="LV"> The voter wasn't home and you <i>did</i> leave a <b>voicemail.</b> </label><br /><br>
     
     <input type="radio" name="result" id="Requested Callback" value="CB" />
-    <label for="RC"> The voter requested someone call them back at another time. </label><br />
+    <label for="RC"> The voter requested a <b>call back</b> at another time.** </label><br /><br>
     
     <input type="radio" name="result" id="Soft Decline" value="SD" />
-    <label for="SD"> The voter declined to take the survey. (Soft Decline) </label><br />
+    <label for="SD"> The voter <b>declined</b> to take the survey. (Soft Decline) </label><br /><br>
     
     <input type="radio" name="result" id="Hard Decline" value="HD" />
-    <label for="HD"> The voter <i>adamantly</i> declined to take the survey. (Hard Decline) </label><br />
+    <label for="HD"> The voter <b><i>adamantly</i> declined</b> to take the survey. (Hard Decline) </label><br /><br>
     
     <input type="radio" name="result" id="Disconnected" value="DC" />
-    <label for="DC"> The phone number was disconnected or not in service. </label><br />
+    <label for="DC"> The phone number was <b>disconnected</b> or not in service. </label>
 <br><br>
 <input type="submit" value="Submit" />
 </form>
+<br>** If the voter requested a callback at a specific time, please note their name and ID number before clicking "submit"
+and give that information to the supervisor. Voters can only be called while phone banks are open (3-9pm on weekdays, 9am-9pm
+on Saturdays.)
 {% endif %}
 {% endblock content%}
