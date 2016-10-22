@@ -167,8 +167,8 @@ class Voter(models.Model):
             return False
         elif self.took_survey() == True:
             return False
-        elif self.called_within_3_hours() == True:
-            return False
+        #elif self.called_within_3_hours() == True:
+        #    return False
         elif self.displayed_within_hour() == True:
             return False
         elif self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
