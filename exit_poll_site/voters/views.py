@@ -89,40 +89,86 @@ def result(request, voter_id):
 
 @login_required
 def random(request):
-    all_voters = Voter.objects.all()
+    #all_voters = Voter.objects.all()
     #For call one
-    call_one_voters = []
-    for voter in all_voters:
-        if (voter.which_call() == 1 and voter.is_callable()):
-            call_one_voters.append(voter.pk)
-    if len(call_one_voters) != 0:
-        random_index = randrange(0,len(call_one_voters))
-        v = Voter.objects.get(pk=call_one_voters[random_index])
+    call_one_voters = Voter.objects.filter(call_one=False)
+    valid_call_one_voters = []
+    for voter in call_one_voters:
+        if (voter.is_callable()):
+             valid_call_one_voters.append(voter.pk)
+    if len(valid_call_one_voters) != 0:
+        random_index = randrange(0,len(valid_call_one_voters))
+        v = Voter.objects.get(pk=valid_call_one_voters[random_index])
         v.last_display_time = datetime.now()
         v.save()
-        return HttpResponseRedirect ('/voters/' + str(call_one_voters[random_index]))
+        return HttpResponseRedirect ('/voters/' + str(valid_call_one_voters[random_index]))
+    
     #For call two
-    call_two_voters = []
-    for voter in all_voters:
-        if (voter.which_call() == 2 and voter.is_callable()):
-            call_two_voters.append(voter.pk)
-    if len(call_two_voters) != 0:
-        random_index = randrange(0,len(call_two_voters))
-        v = Voter.objects.get(pk=call_two_voters[random_index])
+    call_two_voters = Voter.objects.filter(call_two=False)
+    valid_call_two_voters = []
+    for voter in call_two_voters:
+        if (voter.is_callable()):
+             valid_call_two_voters.append(voter.pk)
+    if len(valid_call_two_voters) != 0:
+        random_index = randrange(0,len(valid_call_two_voters))
+        v = Voter.objects.get(pk=valid_call_two_voters[random_index])
         v.last_display_time = datetime.now()
         v.save()
-        return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
+        return HttpResponseRedirect ('/voters/' + str(valid_call_two_voters[random_index]))
+    
+    
     #For call three
-    call_three_voters = []
-    for voter in all_voters:
-        if (voter.which_call() == 3 and voter.is_callable()):
-            call_three_voters.append(voter.pk)
-    if len(call_three_voters) != 0:
-        random_index = randrange(0,len(call_three_voters))
-        v = Voter.objects.get(pk=call_three_voters[random_index])
+    call_three_voters = Voter.objects.filter(call_three=False)
+    valid_call_three_voters = []
+    for voter in call_three_voters:
+        if (voter.is_callable()):
+             valid_call_three_voters.append(voter.pk)
+    if len(valid_call_three_voters) != 0:
+        random_index = randrange(0,len(valid_call_three_voters))
+        v = Voter.objects.get(pk=valid_call_three_voters[random_index])
         v.last_display_time = datetime.now()
         v.save()
-        return HttpResponseRedirect ('/voters/' + str(call_two_voters[random_index]))
+        return HttpResponseRedirect ('/voters/' + str(valid_call_three_voters[random_index]))
+    
+    #For call four
+    call_four_voters = Voter.objects.filter(call_four=False)
+    valid_call_four_voters = []
+    for voter in call_four_voters:
+        if (voter.is_callable()):
+             valid_call_four_voters.append(voter.pk)
+    if len(valid_call_four_voters) != 0:
+        random_index = randrange(0,len(valid_call_four_voters))
+        v = Voter.objects.get(pk=valid_call_four_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(valid_call_four_voters[random_index]))
+    
+    #For call five
+    call_five_voters = Voter.objects.filter(call_five=False)
+    valid_call_five_voters = []
+    for voter in call_five_voters:
+        if (voter.is_callable()):
+             valid_call_five_voters.append(voter.pk)
+    if len(valid_call_five_voters) != 0:
+        random_index = randrange(0,len(valid_call_five_voters))
+        v = Voter.objects.get(pk=valid_call_five_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(valid_call_five_voters[random_index]))
+    
+    #For call six
+    call_six_voters = Voter.objects.filter(call_six=False)
+    valid_call_six_voters = []
+    for voter in call_six_voters:
+        if (voter.is_callable()):
+             valid_call_six_voters.append(voter.pk)
+    if len(valid_call_six_voters) != 0:
+        random_index = randrange(0,len(valid_call_six_voters))
+        v = Voter.objects.get(pk=valid_call_six_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(valid_call_six_voters[random_index]))
+    
     return render(request, 'voters/error.html')
 
 @login_required

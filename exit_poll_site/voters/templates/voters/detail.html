@@ -41,8 +41,32 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 <b>Third Call Outcome:</b> {{voter.get_call_three_outcome_display}}
 {% endif %}
 
+{% if voter.fourth_call_made%} <br><br><b><u>Fourth Call Information:</b></u> <br>
+<b>Time of Fourth Call:</b> {{voter.call_four_time}} <br>
+<b>User Who Made the Fourth Call:</b> {{voter.call_four_user}} <br>
+<b>Fourth Call Outcome:</b> {{voter.get_call_four_outcome_display}}
+{% endif %}
 
-{% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
+{% if voter.fifth_call_made%} <br><br><b><u>Fifth Call Information:</b></u> <br>
+<b>Time of Fifth Call:</b> {{voter.call_five_time}} <br>
+<b>User Who Made the Fifth Call:</b> {{voter.call_five_user}} <br>
+<b>Fifth Call Outcome:</b> {{voter.get_call_five_outcome_display}}
+{% endif %}
+
+{% if voter.sixth_call_made%} <br><br><b><u>Sixth Call Information:</b></u> <br>
+<b>Time of Sixth Call:</b> {{voter.call_six_time}} <br>
+<b>User Who Made the Sixth Call:</b> {{voter.call_six_user}} <br>
+<b>Sixth Call Outcome:</b> {{voter.get_call_six_outcome_display}}
+{% endif %}
+
+{% if voter.seventh_call_made%} <br><br><b><u>Seventh Call Information:</b></u> <br>
+<b>Time of Seventh Call:</b> {{voter.call_seven_time}} <br>
+<b>User Who Made the Seventh Call:</b> {{voter.call_seven_user}} <br>
+<b>Seventh Call Outcome:</b> {{voter.get_call_seven_outcome_display}}
+{% endif %}
+
+
+{% if not voter.call_seven and not voter.took_survey and voter.valid_phone%} 
 <br><br>
 <u>What happened when you called this voter? </u><br> <br> 
 
