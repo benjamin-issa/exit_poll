@@ -9,7 +9,7 @@
 <br><br>
     
 <b>Name:</b> {{ voter }} <br>
-<b>ID Number:</b> {{ voter.respondent_id }}<br>
+<b>ID Number / Access Code:</b> {{ voter.respondent_id }}<br>
 <b>Wave:</b> {{ voter.get_respondent_wave_display }} <br>
 <b>Phone Number:</b> {% if voter.get_phone_number is 1%} <i>There was an error getting a phone number. This might be becasuse all
 phone numbers for this voter have been marked invalid. If you see this error, just click "Make a call" again to try a different voter.</i> {% endif %}
