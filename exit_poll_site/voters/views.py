@@ -169,6 +169,20 @@ def random(request):
         v.save()
         return HttpResponseRedirect ('/voters/' + str(valid_call_six_voters[random_index]))
     
+    
+    #For call seven
+    call_seven_voters = Voter.objects.filter(call_seven=False)
+    valid_call_seven_voters = []
+    for voter in call_seven_voters:
+        if (voter.is_callable()):
+             valid_call_seven_voters.append(voter.pk)
+    if len(valid_call_seven_voters) != 0:
+        random_index = randrange(0,len(valid_call_seven_voters))
+        v = Voter.objects.get(pk=valid_call_seven_voters[random_index])
+        v.last_display_time = datetime.now()
+        v.save()
+        return HttpResponseRedirect ('/voters/' + str(valid_call_seven_voters[random_index]))
+    
     return render(request, 'voters/error.html')
 
 @login_required

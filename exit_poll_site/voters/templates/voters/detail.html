@@ -2,7 +2,7 @@
 
 {% block content%}
    
-{% if not voter.call_three and not voter.took_survey and voter.valid_phone%}  
+{% if not voter.call_seven and not voter.took_survey and voter.valid_phone%}  
 <i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
 {% endif %}
 
@@ -20,7 +20,7 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 {% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
 {% if not voter.first_call_made%}This is the <b>first</b> call.{% endif %}
 {% if voter.first_call_made and not voter.second_call_made %}This is the <b>second</b> call. <br><br>{% endif %}
-{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %}This is the <b>third and final</b> call. <br><br>{% endif %}
+{% if voter.first_call_made and voter.second_call_made and not voter.third_call_made %}This is the <b>third</b> call. <br><br>{% endif %}
 {% endif %}
 
 {% if voter.first_call_made%} <b><u>First Call Information:</b></u> <br>
@@ -97,6 +97,18 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 </form>
 <br>** If the voter requested a callback at a specific time, please note their name and ID number before clicking "submit"
 and give that information to the supervisor. Voters can only be called while phone banks are open (3-9pm on weekdays, 9am-9pm
-on Saturdays.)
+on Saturdays.)<br><br>
 {% endif %}
+
+
+{% if user.is_staff %} 
+<h2><u>Supervisor Tools: Place a Temporary Hold*</u></h2>
+(list of hold options will go here)<br><br>
+
+*Placing a hold doesn't prevent a person from being called via the "lookup" function; it only prevents them from being placed in the
+pool of people to be called with the "Make A Call Button." Place a hold on someone if they request a callback to make sure they aren't
+called sooner than they requested.
+{% endif %}
+  
+  
 {% endblock content%}
