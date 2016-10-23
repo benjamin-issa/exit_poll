@@ -110,9 +110,9 @@ class Voter(models.Model):
     )
     #Call Five Information
     call_five = models.BooleanField(default=False, blank=True)
-    call_five_time = models.DateTimeField('time of fourth call', blank=True, null=True)
+    call_five_time = models.DateTimeField('time of fifth call', blank=True, null=True)
     call_five_user = models.CharField(max_length=80, blank=True, null=True)
-    call_five_phone = models.OneToOneField(Phone, related_name='phone for call four+', blank=True, null=True)
+    call_five_phone = models.OneToOneField(Phone, related_name='phone for call five+', blank=True, null=True)
     call_five_outcome = models.CharField(
         max_length=2,
         choices=OUTCOME_CHOICES,
@@ -121,9 +121,9 @@ class Voter(models.Model):
     )
     #Call Six Information
     call_six = models.BooleanField(default=False, blank=True)
-    call_six_time = models.DateTimeField('time of fourth call', blank=True, null=True)
+    call_six_time = models.DateTimeField('time of sixth call', blank=True, null=True)
     call_six_user = models.CharField(max_length=80, blank=True, null=True)
-    call_six_phone = models.OneToOneField(Phone, related_name='phone for call four+', blank=True, null=True)
+    call_six_phone = models.OneToOneField(Phone, related_name='phone for call six+', blank=True, null=True)
     call_six_outcome = models.CharField(
         max_length=2,
         choices=OUTCOME_CHOICES,
@@ -132,9 +132,9 @@ class Voter(models.Model):
     )
     #Call Seven Information
     call_seven = models.BooleanField(default=False, blank=True)
-    call_seven_time = models.DateTimeField('time of fourth call', blank=True, null=True)
+    call_seven_time = models.DateTimeField('time of seventh call', blank=True, null=True)
     call_seven_user = models.CharField(max_length=80, blank=True, null=True)
-    call_seven_phone = models.OneToOneField(Phone, related_name='phone for call four+', blank=True, null=True)
+    call_seven_phone = models.OneToOneField(Phone, related_name='phone for call seven+', blank=True, null=True)
     call_seven_outcome = models.CharField(
         max_length=2,
         choices=OUTCOME_CHOICES,
