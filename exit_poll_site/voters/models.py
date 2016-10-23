@@ -24,7 +24,7 @@ class Voter(models.Model):
     #Spanish Speaker
     spanish_speaking = models.BooleanField(default=False)
     #Temporary Supervisor Hold
-    supervisor_hold_date = models.DateTimeField('last time of display', blank=True, null=True, default = None)
+    supervisor_hold_date = models.DateTimeField('On Hold Until:', blank=True, null=True)
     #Wave
     WAVEONE = 'W1'
     WAVETWO = 'W2'
@@ -162,6 +162,13 @@ class Voter(models.Model):
     def __str__(self):
         return self.name
     
+    def is_held(self):
+        if self.supervisor_hold_date is None:
+            return False
+        if self.supervisor_hold_date > timezone.now():
+            return True
+        return False
+    
     #currently set to three hours
     def called_recently(self):
         if self.call_seven == True:
@@ -291,7 +298,7 @@ class Voter(models.Model):
             return False
         elif self.valid_phone() == False:
             return False
-        elif self.supervisor_hold_date != None and supervisor_hold_date < datetime.now():
+        elif self.is_held():
             return False
         elif self.has_declined == True:
             return False

@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'lookup/$', views.lookup, name='lookup'),
     url(r'processvl/$', views.processvl, name='processvl'),
     url(r'lookuperror/$', views.lookuperror, name='lookuperror'),
+    url(r'^(?P<voter_id>[0-9]+)/placehold/$', views.placehold, name='placehold'),
 ]

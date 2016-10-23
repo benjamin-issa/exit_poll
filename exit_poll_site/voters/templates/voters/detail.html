@@ -2,6 +2,15 @@
 
 {% block content%}
    
+{% if user.is_staff and voter.is_held is True and not voter.call_seven and not voter.took_survey and voter.valid_phone%}
+
+<h2><u><font color="red">Note for Supervisors:</u></h2></font>
+This voter has been placed on hold until {{voter.supervisor_hold_date}} They can still be looked up, but they will not appear using
+the "Make a Call" button.
+
+<hr>
+{% endif %}   
+
 {% if not voter.call_seven and not voter.took_survey and voter.valid_phone%}  
 <i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
 {% endif %}
@@ -101,14 +110,42 @@ on Saturdays.)<br><br>
 {% endif %}
 
 
-{% if user.is_staff %} 
+{% if user.is_staff and voter.is_held is False and not voter.call_seven and not voter.took_survey and voter.valid_phone%}
+
+<hr>
+
 <h2><u>Supervisor Tools: Place a Temporary Hold*</u></h2>
-(list of hold options will go here)<br><br>
+<form action="{% url 'voters:placehold' voter.id %}" method="post">
+{% csrf_token %}
+    <input type="radio" name="hold" id="One Day" value="1" />
+    <label for="1">One Day (24 Hour) Hold</label><br />
+    
+    <input type="radio" name="hold" id="Two Day" value="2" />
+    <label for="2">Two Day (48 Hour) Hold </label><br />
+    
+    <input type="radio" name="hold" id="Three Day" value="3" />
+    <label for="3">Three Day (72 Hour) Hold</label><br />
+    
+    <input type="radio" name="hold" id="Four Day" value="4" />
+    <label for="4">Four Day (96 Hour) Hold</label><br />
+    
+    <input type="radio" name="hold" id="Five Day" value="5" />
+    <label for="5">Five Day (120  Hour) Hold</label><br />
+    
+    <input type="radio" name="hold" id="Six Day" value="6" />
+    <label for="6">Six Day (144 Hour) Hold</label><br />
+    
+    <input type="radio" name="hold" id="Seven Day" value="7" />
+    <label for="7">Seven Day (178 Hour) Hold</label>
+<br><br>
+<input type="submit" value="Place Hold" /><br><br>
 
 *Placing a hold doesn't prevent a person from being called via the "lookup" function; it only prevents them from being placed in the
-pool of people to be called with the "Make A Call Button." Place a hold on someone if they request a callback to make sure they aren't
+pool of people to be called with the "Make A Call" button. Place a hold on someone if they request a callback at a certain time to make sure they aren't
 called sooner than they requested.
 {% endif %}
+
+
   
   
 {% endblock content%}

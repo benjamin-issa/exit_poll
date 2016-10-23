@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from datetime import datetime   
+from datetime import datetime, timedelta 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from random import randrange
 from django.contrib.auth.decorators import login_required
 from .models import Voter, Phone
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 @login_required
 def index(request):
@@ -211,3 +213,29 @@ def processvl(request):
 @login_required
 def lookuperror(request):
     return render(request, 'voters/lookuperror.html')
+
+@staff_member_required
+def placehold(request, voter_id):
+    voter = get_object_or_404(Voter, pk=voter_id)
+    try:
+        hold = request.POST['hold']
+    except:
+        return HttpResponseRedirect('/voters/' + voter_id)
+    if hold == "1":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=1)
+    if hold == "2":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=2)
+    if hold == "3":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=3)
+    if hold == "4":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=4)
+    if hold == "5":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=5)
+    if hold == "6":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=6)
+    if hold == "7":
+        voter.supervisor_hold_date = datetime.now() + timedelta(days=7)
+    voter.save()
+    return HttpResponseRedirect('/voters/' + voter_id)
+
+
