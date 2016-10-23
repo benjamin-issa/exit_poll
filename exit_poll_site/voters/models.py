@@ -164,40 +164,38 @@ class Voter(models.Model):
     
     #currently set to three hours
     def called_recently(self):
-        #in seconds
-        call_delay_time = 10800
         if self.call_seven == True:
-            if self.call_seven_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_seven_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_six == True:
-            if self.call_six_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_six_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_five == True:
-            if self.call_five_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_five_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_four == True:
-            if self.call_four_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_four_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_three == True:
-            if self.call_three_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_three_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_two == True:
-            if self.call_two_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_two_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
         if self.call_one == True:
-            if self.call_one_time >= timezone.now() - datetime.timedelta(seconds=call_delay_time):
+            if self.call_one_time >= timezone.now() - datetime.timedelta(seconds=10800):
                 return True
             else:
                 return False
