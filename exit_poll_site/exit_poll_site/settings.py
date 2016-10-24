@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%d-!4^%tlv*!n+gc983&d(1t*9hc^^56go2m4j@=#2ft#&$&0v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ucep-phone.org']
 
 
 # Application definition
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +79,12 @@ WSGI_APPLICATION = 'exit_poll_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ebdb',
+        'USER': 'administrator',
+        'PASSWORD': 'kXgkbOt8IkTx',
+        'HOST': 'aa1hhqdrz0738ic.cugkjcp8z70e.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -129,3 +132,8 @@ LOGIN_URL = '/account/login/'
 RECAPTCHA_PUBLIC_KEY = '6Lf7OwkUAAAAAA6I_IkDsyaZtuCUvMNufvfd4Vra'
 RECAPTCHA_PRIVATE_KEY = '6Lf7OwkUAAAAAKaoIgla6_Iwob5Y8PWwwmqGqeZn'
 NOCAPTCHA = True
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+STATIC_ROOT=os.path.join(BASE_DIR,'static/')

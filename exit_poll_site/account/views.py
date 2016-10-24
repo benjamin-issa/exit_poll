@@ -8,11 +8,9 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from account.forms import LoginForm
 from django.views.generic.edit import FormView
 from django import forms
 import requests
-from recaptcha.client import captcha
 from requests.auth import HTTPDigestAuth
 import json
 
