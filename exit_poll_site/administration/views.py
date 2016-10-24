@@ -29,10 +29,10 @@ def index(request):
     w1_phone = voters_took_survey_phone.filter(respondent_wave = "W1")
     w1_internet = voters_took_survey_internet.filter(respondent_wave = "W1")
     
-#    w2_voters_took_survey = voters_took_survey.filter(respondent_wave = "W2")
-#    w2_response_rate = (w2_voters_took_survey.count() / float(voters_wavetwo.count()) * 100)
-#    w2_phone = voters_took_survey_phone.filter(respondent_wave = "W2")
-#    w2_internet = voters_took_survey_internet.filter(respondent_wave = "W2")
+    w2_voters_took_survey = voters_took_survey.filter(respondent_wave = "W2")
+    w2_response_rate = (w2_voters_took_survey.count() / float(voters_wavetwo.count()) * 100)
+    w2_phone = voters_took_survey_phone.filter(respondent_wave = "W2")
+    w2_internet = voters_took_survey_internet.filter(respondent_wave = "W2")
     
 #    w3_voters_took_survey = voters_took_survey.filter(respondent_wave = "W3")
 #    w3_response_rate = (w3_voters_took_survey.count() / float(voters_wavethree.count()) * 100)
@@ -52,8 +52,8 @@ def index(request):
                                           'voters_took_survey': voters_took_survey, 'response_rate': response_rate,
                                           'w1_voters_took_survey': w1_voters_took_survey, 'w1_response_rate': w1_response_rate,
                                           'w1_phone': w1_phone, 'w1_internet': w1_internet,
-#                                          'w2_voters_took_survey': w2_voters_took_survey, 'w2_response_rate': w2_response_rate,
-#                                          'w2_phone': w2_phone, 'w2_internet': w2_internet,
+                                          'w2_voters_took_survey': w2_voters_took_survey, 'w2_response_rate': w2_response_rate,
+                                          'w2_phone': w2_phone, 'w2_internet': w2_internet,
 #                                          'w3_voters_took_survey': w3_voters_took_survey, 'w3_response_rate': w3_response_rate,
 #                                          'w3_phone': w3_phone, 'w3_internet': w3_internet,
 #                                          'w4_voters_took_survey': w4_voters_took_survey, 'w4_response_rate': w4_response_rate,

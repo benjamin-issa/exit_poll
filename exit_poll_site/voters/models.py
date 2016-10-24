@@ -264,27 +264,20 @@ class Voter(models.Model):
         return False
     
     def has_declined(self):
-        if self.call_one:
-            if self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
-                return True
-        if self.call_two:
-            if self.call_two_outcome == "SD" or self.call_two_outcome == "HD":
-                return True
-        if self.call_three:
-            if self.call_three_outcome == "SD" or self.call_three_outcome == "HD":
-                return True
-        if self.call_four:
-            if self.call_four_outcome == "SD" or self.call_four_outcome == "HD":
-                return True
-        if self.call_five:
-            if self.call_five_outcome == "SD" or self.call_five_outcome == "HD":
-                return True
-        if self.call_six:
-            if self.call_six_outcome == "SD" or self.call_six_outcome == "HD":
-                return True
-        if self.call_seven:
-            if self.call_seven_outcome == "SD" or self.call_seven_outcome == "HD":
-                return True
+        if self.call_one_outcome == "SD" or self.call_one_outcome == "HD":
+            return True
+        if self.call_two_outcome == "SD" or self.call_two_outcome == "HD":
+            return True
+        if self.call_three_outcome == "SD" or self.call_three_outcome == "HD":
+            return True
+        if self.call_four_outcome == "SD" or self.call_four_outcome == "HD":
+            return True
+        if self.call_five_outcome == "SD" or self.call_five_outcome == "HD":
+            return True
+        if self.call_six_outcome == "SD" or self.call_six_outcome == "HD":
+            return True
+        if self.call_seven_outcome == "SD" or self.call_seven_outcome == "HD":
+            return True
         return False
     
     def is_callable(self):
@@ -300,7 +293,7 @@ class Voter(models.Model):
             return False
         elif self.is_held():
             return False
-        elif self.has_declined == True:
+        elif self.has_declined() == True:
             return False
         else:
             return True
