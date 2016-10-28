@@ -15,6 +15,10 @@ the "Make a Call" button.
 <i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
 {% endif %}
 
+{% if voter.done_online_survey %}  
+<i>This voter has already done the survey online. Please move to the next person.</i>
+{% endif %}
+
 <br><br>
     
 <b>Name:</b> {{ voter }} <br>
