@@ -12,7 +12,7 @@ with open('import_voters.csv', 'rb') as f:
                          i=i+1
       r_id= row[0]
 # change the following choice if it is not wave one
-      r_wave= "W1"
+      r_wave= "W3"
       age=row[10]
       if age.isspace()==True:
         age= "0"
