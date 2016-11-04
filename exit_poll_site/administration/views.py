@@ -39,10 +39,10 @@ def index(request):
     w3_phone = voters_took_survey_phone.filter(respondent_wave = "W3")
     w3_internet = voters_took_survey_internet.filter(respondent_wave = "W3")
     
-#    w4_voters_took_survey = voters_took_survey.filter(respondent_wave = "W4")
-#    w4_response_rate = (w4_voters_took_survey.count() / float(voters_wavefour.count()) * 100)
-#    w4_phone = voters_took_survey_phone.filter(respondent_wave = "W4")
-#    w4_internet = voters_took_survey_internet.filter(respondent_wave = "W4")
+    w4_voters_took_survey = voters_took_survey.filter(respondent_wave = "W4")
+    w4_response_rate = (w4_voters_took_survey.count() / float(voters_wavefour.count()) * 100)
+    w4_phone = voters_took_survey_phone.filter(respondent_wave = "W4")
+    w4_internet = voters_took_survey_internet.filter(respondent_wave = "W4")
     
     #for voter in voters:
     #    if voter.took_survey() == True:
@@ -56,6 +56,6 @@ def index(request):
                                           'w2_phone': w2_phone, 'w2_internet': w2_internet,
                                           'w3_voters_took_survey': w3_voters_took_survey, 'w3_response_rate': w3_response_rate,
                                           'w3_phone': w3_phone, 'w3_internet': w3_internet,
-#                                          'w4_voters_took_survey': w4_voters_took_survey, 'w4_response_rate': w4_response_rate,
-#                                          'w4_phone': w4_phone, 'w4_internet': w4_internet,
+                                          'w4_voters_took_survey': w4_voters_took_survey, 'w4_response_rate': w4_response_rate,
+                                          'w4_phone': w4_phone, 'w4_internet': w4_internet,
                                           })
