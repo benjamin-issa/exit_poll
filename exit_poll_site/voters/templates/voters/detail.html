@@ -11,7 +11,7 @@ the "Make a Call" button.
 <hr>
 {% endif %}   
 
-{% if not voter.call_seven and not voter.took_survey and voter.valid_phone%}  
+{% if not voter.call_seven and not voter.took_survey and not voter.has_declined and voter.valid_phone%}  
 <i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
 {% endif %}
 
@@ -79,7 +79,7 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 {% endif %}
 
 
-{% if not voter.call_seven and not voter.took_survey and voter.valid_phone%} 
+{% if not voter.call_seven and not voter.took_survey and not voter.has_declined and voter.valid_phone%} 
 <br><br>
 <u>What happened when you called this voter? </u><br> <br> 
 
