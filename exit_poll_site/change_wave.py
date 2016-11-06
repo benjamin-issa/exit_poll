@@ -12,5 +12,5 @@ with open('import_voters.csv', 'rb') as f:
                          i=i+1
       r_id= row[0]
       voter = Voter.objects.get(respondent_id=r_id)
-      voter.respondent_wave = "W2"
+      voter.respondent_wave = "W5"
       voter.save()
