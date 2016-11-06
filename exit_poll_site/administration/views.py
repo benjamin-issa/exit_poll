@@ -16,10 +16,15 @@ def index(request):
     voters_wavetwo = Voter.objects.filter(respondent_wave__exact = "W2")
     voters_wavethree = Voter.objects.filter(respondent_wave__exact = "W3")
     voters_wavefour = Voter.objects.filter(respondent_wave__exact = "W4")
+    voters_wavefive = Voter.objects.filter(respondent_wave__exact = "W5")
     voters_took_survey = Voter.objects.filter(Q(call_one_outcome = "TS") | Q (call_two_outcome = "TS") |
-                                              Q(call_three_outcome = "TS") | Q(done_online_survey = True))
+                                              Q(call_three_outcome = "TS") | Q (call_four_outcome = "TS") |
+                                              Q(call_five_outcome = "TS") | Q (call_six_outcome = "TS") |
+                                              Q(call_seven_outcome = "TS") | Q(done_online_survey = True))
     voters_took_survey_phone = Voter.objects.filter(Q(call_one_outcome = "TS") | Q (call_two_outcome = "TS") |
-                                              Q(call_three_outcome = "TS"))
+                                              Q(call_three_outcome = "TS") | Q (call_four_outcome = "TS") |
+                                              Q(call_five_outcome = "TS") | Q (call_six_outcome = "TS") |
+                                              Q(call_seven_outcome = "TS"))
     voters_took_survey_internet = Voter.objects.filter(done_online_survey = True)
     response_rate = (voters_took_survey.count() / float(voters.count()) * 100)
     
@@ -44,6 +49,11 @@ def index(request):
     w4_phone = voters_took_survey_phone.filter(respondent_wave = "W4")
     w4_internet = voters_took_survey_internet.filter(respondent_wave = "W4")
     
+#    w5_voters_took_survey = voters_took_survey.filter(respondent_wave = "W5")
+#    w5_response_rate = (w5_voters_took_survey.count() / float(voters_wavefive.count()) * 100)
+#    w5_phone = voters_took_survey_phone.filter(respondent_wave = "W5")
+#    w5_internet = voters_took_survey_internet.filter(respondent_wave = "W5")
+    
     #for voter in voters:
     #    if voter.took_survey() == True:
     #        number_taken_survey = number_taken_survey + 1
@@ -58,4 +68,6 @@ def index(request):
                                           'w3_phone': w3_phone, 'w3_internet': w3_internet,
                                           'w4_voters_took_survey': w4_voters_took_survey, 'w4_response_rate': w4_response_rate,
                                           'w4_phone': w4_phone, 'w4_internet': w4_internet,
+#                                          'w5_voters_took_survey': w5_voters_took_survey, 'w5_response_rate': w5_response_rate,
+#                                          'w5_phone': w5_phone, 'w5_internet': w5_internet,
                                           })
