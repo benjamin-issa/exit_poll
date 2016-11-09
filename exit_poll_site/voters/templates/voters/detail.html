@@ -16,7 +16,7 @@ the "Make a Call" button.
 {% endif %}
 
 {% if voter.done_online_survey %}  
-<i>This voter has already done the survey online. Please move to the next person.</i>
+<h2><u><font color="red">This voter has already done the survey online. Please move to the next person.</u></h2></font>
 {% endif %}
 
 <br><br>
@@ -29,6 +29,8 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 {% if voter.get_phone_number is not 1%} {{voter.get_phone_number.phone_no}} {% endif %}
 
 <br><br>
+
+
 
 {% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
 {% if not voter.first_call_made%}This is the <b>first</b> call.{% endif %}
@@ -76,6 +78,16 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 <b>Time of Seventh Call:</b> {{voter.call_seven_time}} <br>
 <b>User Who Made the Seventh Call:</b> {{voter.call_seven_user}} <br>
 <b>Seventh Call Outcome:</b> {{voter.get_call_seven_outcome_display}}
+{% endif %}
+
+{% if voter.took_survey %}
+<br><br>
+<h2><u><font color="red">This person has already taken the survey. Please cross them off your list and move to the next call.</u></h2></font>
+{% endif %}
+
+{% if voter.has_declined and not voter.done_online_survey %}
+<br><br>
+<h2><u><font color="red">This voter has already declined to take the survey. Please cross them off your list and move to the next call.</u></h2></font>
 {% endif %}
 
 

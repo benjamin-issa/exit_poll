@@ -49,16 +49,16 @@ def index(request):
     w4_phone = voters_took_survey_phone.filter(respondent_wave = "W4")
     w4_internet = voters_took_survey_internet.filter(respondent_wave = "W4")
     
-#    w5_voters_took_survey = voters_took_survey.filter(respondent_wave = "W5")
-#    w5_response_rate = (w5_voters_took_survey.count() / float(voters_wavefive.count()) * 100)
-#    w5_phone = voters_took_survey_phone.filter(respondent_wave = "W5")
-#    w5_internet = voters_took_survey_internet.filter(respondent_wave = "W5")
+    w5_voters_took_survey = voters_took_survey.filter(respondent_wave = "W5")
+    w5_response_rate = (w5_voters_took_survey.count() / float(voters_wavefive.count()) * 100)
+    w5_phone = voters_took_survey_phone.filter(respondent_wave = "W5")
+    w5_internet = voters_took_survey_internet.filter(respondent_wave = "W5")
     
     #for voter in voters:
     #    if voter.took_survey() == True:
     #        number_taken_survey = number_taken_survey + 1
     return render(request, 'index.html', {'voters_waveone': voters_waveone, 'voters': voters, 'voters_wavetwo': voters_wavetwo,
-                                          'voters_wavethree': voters_wavethree, 'voters_wavefour': voters_wavefour,
+                                          'voters_wavethree': voters_wavethree, 'voters_wavefour': voters_wavefour, 'voters_wavefive': voters_wavefive,
                                           'voters_took_survey': voters_took_survey, 'response_rate': response_rate,
                                           'w1_voters_took_survey': w1_voters_took_survey, 'w1_response_rate': w1_response_rate,
                                           'w1_phone': w1_phone, 'w1_internet': w1_internet,
@@ -68,6 +68,6 @@ def index(request):
                                           'w3_phone': w3_phone, 'w3_internet': w3_internet,
                                           'w4_voters_took_survey': w4_voters_took_survey, 'w4_response_rate': w4_response_rate,
                                           'w4_phone': w4_phone, 'w4_internet': w4_internet,
-#                                          'w5_voters_took_survey': w5_voters_took_survey, 'w5_response_rate': w5_response_rate,
-#                                          'w5_phone': w5_phone, 'w5_internet': w5_internet,
+                                          'w5_voters_took_survey': w5_voters_took_survey, 'w5_response_rate': w5_response_rate,
+                                          'w5_phone': w5_phone, 'w5_internet': w5_internet,
                                           })
