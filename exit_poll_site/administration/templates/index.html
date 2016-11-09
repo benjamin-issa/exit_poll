@@ -20,7 +20,7 @@
 <br><br><u>Number of Potential Respondents in Wave One</u>: {{ voters_waveone.count }} <br>
         &nbsp; &nbsp; &nbsp; &nbsp;Response Rate for Wave One: {{w1_voters_took_survey.count}}/{{voters_waveone.count}} ({{w1_response_rate}}%)<br>
         &nbsp; &nbsp; &nbsp; &nbsp;# of Wave One phone participants: {{w1_phone.count}}<br>
-        &nbsp; &nbsp; &nbsp; &nbsp;# of Wave One online participants: {{w1_internet.count}} <br>
+        &nbsp; &nbsp; &nbsp; &nbsp;# of Wave One online participants: {{w1_internet.count}}
 <br><br><u>Number of Potential Respondents in Wave Two</u>: {{ voters_wavetwo.count }} <br>
         &nbsp; &nbsp; &nbsp; &nbsp;Response Rate for Wave Two: {{w2_voters_took_survey.count}}/{{voters_wavetwo.count}} ({{w2_response_rate}}%)<br>
         &nbsp; &nbsp; &nbsp; &nbsp;# of Wave Two phone participants: {{w2_phone.count}}<br>
@@ -33,5 +33,10 @@
         &nbsp; &nbsp; &nbsp; &nbsp;Response Rate for Wave Four: {{w4_voters_took_survey.count}}/{{voters_wavefour.count}} ({{w4_response_rate}}%)<br>
         &nbsp; &nbsp; &nbsp; &nbsp;# of Wave Four phone participants: {{w4_phone.count}}<br>
         &nbsp; &nbsp; &nbsp; &nbsp;# of Wave Four online participants: {{w4_internet.count}} 
+<br><br><u>Number of Potential Respondents in Wave Five</u>: {{ voters_wavefive.count }} <br>
+        &nbsp; &nbsp; &nbsp; &nbsp;Response Rate for Wave Four: {{w5_voters_took_survey.count}}/{{voters_wavefive.count}} ({{w5_response_rate}}%)<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;# of Wave Five phone participants: {{w5_phone.count}}<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;# of Wave Five online participants: {{w5_internet.count}} 
 
+<br><br><br>
 {% endblock content%}

@@ -47,6 +47,7 @@ a:hover:not(.active) {
   {% if user.is_authenticated %} 
   <li><a href="{% url 'voters:instructions' %}">Instructions</a></li>
   <li><a href="https://byu.az1.qualtrics.com/SE/?SID=SV_0PnCqqbkg0nv9J3" target="_blank">Qualtrics Survey</a></li>
+  <li><a href="https://byu.az1.qualtrics.com/SE/?SID=SV_dbewikKty19d1uR" target="_blank">Data Entry Survey (use only if directed)</a></li>
   <li><a href="{% url 'voters:lookup' %}">Lookup a Voter</a></li>
   <li><a href="{% url 'account:accountdetail' %}">Account ({{user.get_full_name}})</a></li>
   {% if user.is_staff %} 
