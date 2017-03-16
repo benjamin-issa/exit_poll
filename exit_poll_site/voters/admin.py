@@ -19,10 +19,7 @@ class VoterAdmin(admin.ModelAdmin):
     list_display = ('name', 'respondent_id', 'respondent_wave', 'took_survey', 'call_one', 'call_two', 'call_three', 'call_four', 'call_five', 'call_six', 'call_seven')
     list_filter = ['respondent_wave', 'call_one', 'call_two', 'call_three', 'call_four', 'call_five', 'call_six', 'call_seven']
     search_fields = ['name', 'respondent_id']
-    
-class PhoneAdmin(admin.ModelAdmin):
-    search_fields = ['phono_no']
 
 
 admin.site.register(Voter, VoterAdmin)
-admin.site.register(Phone, PhoneAdmin)
+admin.site.register(Phone)
