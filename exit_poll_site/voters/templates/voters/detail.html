@@ -11,8 +11,12 @@ the "Make a Call" button.
 <hr>
 {% endif %}   
 
-{% if not voter.call_seven and not voter.took_survey and voter.valid_phone%}  
+{% if not voter.call_seven and not voter.took_survey and not voter.has_declined and voter.valid_phone%}  
 <i>Please copy and paste this voter's ID number into Qualtrics, call them, and then record what happens below. </i>
+{% endif %}
+
+{% if voter.done_online_survey %}  
+<h2><u><font color="red">This voter has already done the survey online. Please move to the next person.</u></h2></font>
 {% endif %}
 
 <br><br>
@@ -25,6 +29,8 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 {% if voter.get_phone_number is not 1%} {{voter.get_phone_number.phone_no}} {% endif %}
 
 <br><br>
+
+
 
 {% if not voter.call_three and not voter.took_survey and voter.valid_phone%} 
 {% if not voter.first_call_made%}This is the <b>first</b> call.{% endif %}
@@ -74,8 +80,18 @@ phone numbers for this voter have been marked invalid. If you see this error, ju
 <b>Seventh Call Outcome:</b> {{voter.get_call_seven_outcome_display}}
 {% endif %}
 
+{% if voter.took_survey %}
+<br><br>
+<h2><u><font color="red">This person has already taken the survey. Please cross them off your list and move to the next call.</u></h2></font>
+{% endif %}
 
-{% if not voter.call_seven and not voter.took_survey and voter.valid_phone%} 
+{% if voter.has_declined and not voter.done_online_survey %}
+<br><br>
+<h2><u><font color="red">This voter has already declined to take the survey. Please cross them off your list and move to the next call.</u></h2></font>
+{% endif %}
+
+
+{% if not voter.call_seven and not voter.took_survey and not voter.has_declined and voter.valid_phone%} 
 <br><br>
 <u>What happened when you called this voter? </u><br> <br> 
 
